@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react'
 
 export const Empleados = React.memo(
-    ({page}) => {
+    ({pagina, mensaje}) => {
             // Inicializamos el useState
             const [ usuarios, setUsuarios ] = useState([]);
 
             useEffect(()=>{
-                getUsuario(page);
-            }, [page]);
+                console.log("Se ha vuelto a renderizar usuarios");
+            }, [usuarios]);
+            
 
             // Usamos las async await
             const getUsuario = async(page) => {
@@ -32,11 +33,15 @@ export const Empleados = React.memo(
                 }
             }// End getUsuario
 
+            useEffect(()=>{
+                getUsuario(pagina);
+            }, [pagina]);
+            
 
 
         return (
             <div>
-                <p>Mostrando la página: {page}</p>
+                <p>Mostrando la página: {pagina}</p>
                 <ul className='usuarios'>
                     {usuarios.length >= 1 &&
                         usuarios.map( usuario => {

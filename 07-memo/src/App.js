@@ -9,11 +9,11 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
 
-        { /* Ejercicio con hook useMemo */}
-        <Tareas></Tareas>
+        { /* Ejercicio con hook useMemo: <Tareas></Tareas> */}
+        
 
         
-        {/* <Gestion></Gestion> */}
+        <Gestion></Gestion>
       </header>
     </div>
   );

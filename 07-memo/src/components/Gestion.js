@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { Empleados } from './Empleados'
 
 export const Gestion = () => {
@@ -12,6 +12,15 @@ export const Gestion = () => {
         setNombre(gestorInput.current.value);
     }
 
+    useEffect(() => {
+        console.log("Vista de gestión actualizada.");
+    }, [nombre, pagina]);
+
+    // Con el use callback lo que hacemos es que solo se renderice la funcion cuando la actualicemos, y no constantemente. Es parecido a useMemo
+    const mostrarMensaje = useCallback(() => {
+        console.log("HOLA! Soy un mensaje.");
+    }, [pagina]);// Las dependencias es lo que marca su actualizacion, le vamos a poner la pagina para marcar que se tiene que renderizar cada vez que se actualice la pagina
+
 
   return (
     <div>
@@ -21,7 +30,8 @@ export const Gestion = () => {
         <p>Los usuarios son gestionados por {nombre} vienen de JSONplaceholder</p>
         <button onClick={() => {setPagina(1)}}>Página 1</button>
         <button onClick={() => {setPagina(2)}}>Página 2</button>
-        <Empleados page={pagina}></Empleados>
+
+        <Empleados page={pagina} mensaje= {mostrarMensaje} ></Empleados>
     </div>
   )
 }
