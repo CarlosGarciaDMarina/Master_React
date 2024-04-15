@@ -12,9 +12,20 @@ export const JuegoReducer = (state = [], action) => {
         case "crear":
             // Devolvemos un array que va a tener todo lo que ya tenga el estado por defecto, más el nuevo juego (action.payload)
             return [...state, action.payload]; 
+
         case "borrar":
             // hacemos un filter para que recorra los juegos y compruebe que la id del juego sea distinto al payload, si es igual no se guarda 
-            return state.filter(juego => juego.id !== action.payload); 
+            return state.filter(juego => juego.id !== action.payload);
+
+        case "editar":
+            // Para saber cual es el nombre que hay que editar hay que sacar la posicion del array de objetos está el elemento que queremos editar
+            let indice = state.findIndex(juego => juego.id === action.payload.id); // state.findIndex es un método que te permit buscar un indice en concreto
+
+            // Editamos el elemento con el valor del payload
+            state[indice] = action.payload;
+
+            // Actualizamos el estado
+            return [...state]; 
     
         default:
             // El switch debe devolver siempre un estado, para eso sirve, para gestionar un estado
