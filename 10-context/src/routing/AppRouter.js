@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Route, Routes, NavLink, BrowserRouter } from 'react-router-dom';
 import { Inicio } from '../components/Inicio';
 import { Articulos } from '../components/Articulos';
 import { Acerca } from '../components/Acerca';
 import { Contacto } from '../components/Contacto';
 import { Login } from '../components/Login';
-
+import { PruebaContext } from '../context/PruebaContext';
 
 export const AppRouter = () => {
+
+    const { usuario, setUsuario } = useContext(PruebaContext);
+
   return (
     <BrowserRouter>
     
@@ -22,24 +25,53 @@ export const AppRouter = () => {
                     <NavLink to={"/"}>
                         Inicio
                     </NavLink>
+                </li>
+                <li>
                     <NavLink to={"/articulos"}>
                         Articulos
                     </NavLink>
+                </li>
+                <li>
                     <NavLink to={"/acerca-de"}>
                         Acerca de
                     </NavLink>
+                </li>
+                <li>
                     <NavLink to={"/contacto"}>
                         Contacto
                     </NavLink>
-                    <NavLink to={"/login"}>
-                        Login
-                    </NavLink>
                 </li>
+                    {usuario.nick !== null ?(
+                        //Abrimos un fragment vacio para poder usar ambls <li>
+                        <> 
+                            <li>
+                                <NavLink to={"/"}>
+                                    {usuario.nick}
+                                </NavLink>
+                            </li>
+                            <li>
+                            <a href='#' onClick={e => {
+                                e.preventDefault();
+                                setUsuario({
+                                    nick: null,
+                                    nombre: "carlos",
+                                    web: "carlos.es"
+                                  });
+                            }}>
+                                Cerrar Sesión
+                            </a>
+                            </li>
+                        </>
+                    ):(
+                        <li>
+                            <NavLink to={"/login"}>
+                                Login
+                            </NavLink>
+                        </li>
+                    )}
             </ul>
         </nav>
     </header>
-
-
     {/* Configurar Rutas */}
     <section className='content'>
         <Routes>
