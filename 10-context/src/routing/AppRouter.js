@@ -41,8 +41,8 @@ export const AppRouter = () => {
                         Contacto
                     </NavLink>
                 </li>
-                    {usuario.nick !== null ?(
-                        //Abrimos un fragment vacio para poder usar ambls <li>
+                    {usuario.hasOwnProperty("nick") &&  usuario.nick !== null ?(
+                        //Abrimos un fragment vacio para poder usar ambos <li>
                         <> 
                             <li>
                                 <NavLink to={"/"}>
@@ -50,16 +50,12 @@ export const AppRouter = () => {
                                 </NavLink>
                             </li>
                             <li>
-                            <a href='#' onClick={e => {
-                                e.preventDefault();
-                                setUsuario({
-                                    nick: null,
-                                    nombre: "carlos",
-                                    web: "carlos.es"
-                                  });
-                            }}>
-                                Cerrar Sesión
-                            </a>
+                                <a href='/' onClick={ e => {
+                                    e.preventDefault();
+                                    setUsuario({});
+                                }}>
+                                    Cerrar Sesión
+                                </a>
                             </li>
                         </>
                     ):(

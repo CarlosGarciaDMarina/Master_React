@@ -47,3 +47,9 @@ body {
   margin: 25px auto;
   padding: 25px;
 }
+
+.login input{
+  display: block;
+  margin: 15px;
+  padding: 15px;
+}

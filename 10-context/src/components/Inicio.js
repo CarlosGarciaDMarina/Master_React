@@ -4,7 +4,7 @@ import { PruebaContext } from '../context/PruebaContext'
 export const Inicio = () => {
 
   // Creamos una variable para el context utilizabndo la desestructuracion para acceder directamente al objeto
-  const {usuario, setUsuario} = useContext(PruebaContext);
+  const { usuario, setUsuario } = useContext(PruebaContext);
 
 
   return (
