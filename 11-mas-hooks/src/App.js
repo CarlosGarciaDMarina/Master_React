@@ -3,6 +3,7 @@ import './App.css';
 import { MiComponente } from './components/MiComponente';
 import { PruebasCustom } from './components/PruebasCustom';
 import { MiFormulario } from './components/MiFormulario';
+import { MiUsuario } from './components/MiUsuario';
 
 function App() {
   return (
@@ -11,6 +12,8 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <PruebasCustom />
         <MiFormulario />
+        <hr/>
+        <MiUsuario />
         
       </header>
     </div>
